@@ -53,13 +53,14 @@ except:
 #Reading Updated Data filtered by Unique ID
 print("########## Reading Data ##########")
 uid = input("Enter UID to print ")
-People = db.child("People").order_by_child(str(uid)).get()
-print(People.val())
-print(People.key())
+People = db.child("People").get()
+for person in People.each():
+    if person.key()==uid:
+        print(person.val())
 
 # Delete
 # Deleting selected data
-print("########## Updating Data ##########")
+print("########## Deleting Data ##########")
 uid = input("Enter id from which you want to delete data ")
 fld = input("Enter field which you want to delete ")
 try:
